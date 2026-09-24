@@ -20,19 +20,19 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                bat 'npm install'
+                sh 'npm install'
             }
         }
 
         stage('Build React App') {
             steps {
-                bat 'npm run build'
+                sh 'npm run build'
             }
         }
 
         stage('Docker Build') {
             steps {
-                bat "docker build -t %ECR_REPO%:%IMAGE_TAG% ."
+                sh "docker build -t ${ECR_REPO}:${IMAGE_TAG} ."
             }
         }
 
@@ -42,14 +42,14 @@ pipeline {
                     $class: 'AmazonWebServicesCredentialsBinding',
                     credentialsId: 'aws-ecr-jenkins'
                 ]]) {
-                    bat 'aws ecr get-login-password --region %AWS_REGION% | docker login --username AWS --password-stdin %ECR_REPO%'
+                    sh 'aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $ECR_REPO'
                 }
             }
         }
 
         stage('ECR Push') {
             steps {
-                bat "docker push %ECR_REPO%:%IMAGE_TAG%"
+                sh "docker push ${ECR_REPO}:${IMAGE_TAG}"
             }
         }
     }
