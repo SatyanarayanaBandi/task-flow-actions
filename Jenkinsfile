@@ -52,15 +52,31 @@ pipeline {
                 sh "docker push ${ECR_REPO}:${IMAGE_TAG}"
             }
         }
+
+        stage('Deploy to EC2') {
+            steps {
+                sh """
+                    docker pull ${ECR_REPO}:${IMAGE_TAG}
+
+                    docker stop task-frontend || true
+                    docker rm task-frontend || true
+
+                    docker run -d \
+                        --name task-frontend \
+                        -p 80:80 \
+                        ${ECR_REPO}:${IMAGE_TAG}
+                """
+            }
+        }
     }
 
     post {
         success {
-            echo "Frontend CI/CD build completed successfully!"
+            echo "Frontend CI/CD build and deployment completed successfully!"
         }
 
         failure {
-            echo "Frontend CI/CD build failed!"
+            echo "Frontend CI/CD build or deployment failed!"
         }
     }
 }
