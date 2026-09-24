@@ -1,0 +1,278 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  color: #222;
+}
+
+
+
+.app-page {
+  min-height: 100vh;
+  padding: 40px;
+}
+
+
+.task-list-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.page-header h1 {
+  margin: 0;
+  font-size: 32px;
+}
+
+.add-task-button {
+  padding: 11px 20px;
+  border: none;
+  border-radius: 6px;
+  background: #222;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.add-task-button:hover {
+  background: #444;
+}
+
+
+.table-wrapper {
+  width: 100%;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.task-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.col-sno {
+  width: 8%;
+}
+
+.col-title {
+  width: 20%;
+}
+
+.col-description {
+  width: 32%;
+}
+
+.col-status {
+  width: 14%;
+}
+
+.col-priority {
+  width: 12%;
+}
+
+.col-action {
+  width: 14%;
+}
+
+.task-table th {
+  padding: 15px 12px;
+  background: #eeeeee;
+  border-bottom: 1px solid #ccc;
+  text-align: left;
+  font-size: 14px;
+}
+
+.task-table td {
+  padding: 15px 12px;
+  border-bottom: 1px solid #e1e1e1;
+  vertical-align: middle;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.task-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.center {
+  text-align: center;
+}
+
+.task-title-cell {
+  font-weight: 600;
+}
+
+.description-cell {
+  line-height: 1.4;
+}
+
+.action-cell {
+  white-space: nowrap;
+}
+
+.edit-button,
+.delete-button {
+  padding: 7px 11px;
+  margin-right: 6px;
+  border: 1px solid #bbb;
+  border-radius: 5px;
+  background: white;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.edit-button:hover,
+.delete-button:hover {
+  background: #eeeeee;
+}
+
+.empty-row {
+  height: 100px;
+  text-align: center;
+  color: #777;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-top: 25px;
+  padding-bottom: 10px;
+}
+
+.pagination button {
+  width: 38px;
+  height: 38px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: white;
+  cursor: pointer;
+}
+
+.pagination button:hover:not(:disabled) {
+  background: #eeeeee;
+}
+
+.pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pagination .selected-page {
+  background: #222;
+  color: white;
+  border-color: #222;
+}
+
+
+.task-form-card {
+  width: 520px;
+  max-width: 100%;
+  margin: 30px auto;
+  padding: 35px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+.task-form-card h1 {
+  margin: 0 0 30px;
+  text-align: center;
+  font-size: 30px;
+}
+
+.form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.form-field label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.form-field input,
+.form-field textarea,
+.form-field select {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #bbb;
+  border-radius: 5px;
+  background: white;
+  font-size: 14px;
+}
+
+.form-field textarea {
+  height: 110px;
+  resize: none;
+}
+
+.form-field input:focus,
+.form-field textarea:focus,
+.form-field select:focus {
+  outline: none;
+  border-color: #555;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.submit-button,
+.back-button {
+  flex: 1;
+  height: 42px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.submit-button {
+  background: #222;
+  color: white;
+}
+
+.back-button {
+  background: #ddd;
+  color: #222;
+}
+
+.submit-button:hover {
+  background: #444;
+}
+
+.back-button:hover {
+  background: #ccc;
+}
+
+
+
+.error-message {
+  margin-bottom: 15px;
+  padding: 12px;
+  border: 1px solid #bbb;
+  border-radius: 5px;
+  background: #fafafa;
+  font-size: 14px;
+}
