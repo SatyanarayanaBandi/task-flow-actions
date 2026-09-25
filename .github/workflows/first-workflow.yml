@@ -15,6 +15,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Verify Repository Files
+        run: |
+          echo "Repository files after checkout:"
+          ls -la
+          echo "Package file:"
+          cat package.json
+
       - name: Print Hello
         run: echo "Hello from GitHub Actions"
 
