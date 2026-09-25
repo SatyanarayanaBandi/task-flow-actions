@@ -23,3 +23,12 @@ jobs:
 
       - name: List Files
         run: ls -la
+
+      - name: Show Runner Information
+        run: |
+          echo "Operating System:"
+          uname -a
+          echo "Runner Name:"
+          echo "$RUNNER_NAME"
+          echo "Runner OS:"
+          echo "$RUNNER_OS"
