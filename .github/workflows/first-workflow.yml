@@ -32,3 +32,11 @@ jobs:
           echo "$RUNNER_NAME"
           echo "Runner OS:"
           echo "$RUNNER_OS"
+
+      - name: Multiple Commands
+        run: |
+          echo "Command 1"
+          echo "Command 2"
+          echo "Command 3"
+          pwd
+          ls -la
