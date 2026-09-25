@@ -5,11 +5,16 @@ on:
     branches:
       - main
 
+  workflow_dispatch:
+
 jobs:
   first-job:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Print Hello
         run: echo "Hello from GitHub Actions"
 
@@ -18,4 +23,3 @@ jobs:
 
       - name: List Files
         run: ls -la
-        
