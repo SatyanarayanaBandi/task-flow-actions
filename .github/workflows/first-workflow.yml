@@ -25,6 +25,7 @@ jobs:
           date
 
   second-job:
+    needs: first-job
     runs-on: ubuntu-latest
 
     steps:
@@ -33,9 +34,5 @@ jobs:
           echo "Second Job started"
           date
 
-      - name: Second Job Wait
-        run: |
-          echo "Second Job is running..."
-          sleep 10
-          echo "Second Job finished"
-          date
+      - name: Second Job Message
+        run: echo "Second Job started after First Job completed"
