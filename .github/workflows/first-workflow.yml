@@ -1,4 +1,4 @@
-name: GitHub Actions Conditions
+name: GitHub Actions Always Condition
 
 "on":
   push:
@@ -8,7 +8,7 @@ name: GitHub Actions Conditions
   workflow_dispatch:
 
 jobs:
-  condition-job:
+  always-job:
     runs-on: ubuntu-latest
 
     steps:
@@ -20,9 +20,9 @@ jobs:
           echo "This step will fail"
           exit 1
 
-      - name: Normal Next Step
+      - name: Normal Step
         run: echo "This step will be skipped"
 
-      - name: Failure Handler
-        if: failure()
-        run: echo "A previous step failed, so this step is running"
+      - name: Always Run Step
+        if: always()
+        run: echo "This step runs even after failure"
