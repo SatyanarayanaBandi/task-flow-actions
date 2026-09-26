@@ -1,4 +1,4 @@
-name: GitHub Actions Job Outputs
+name: GitHub Actions Failure Practice
 
 "on":
   push:
@@ -11,21 +11,22 @@ jobs:
   first-job:
     runs-on: ubuntu-latest
 
-    outputs:
-      app-version: ${{ steps.version.outputs.value }}
-
     steps:
-      - name: Create App Version
-        id: version
-        run: echo "value=1.0.0" >> "$GITHUB_OUTPUT"
+      - name: First Job Start
+        run: echo "First job started"
 
-      - name: Show Created Version
-        run: echo "Created version is ${{ steps.version.outputs.value }}"
+      - name: Intentional Failure
+        run: |
+          echo "This step will fail intentionally"
+          exit 1
+
+      - name: This Will Be Skipped
+        run: echo "You should not see this message"
 
   second-job:
     needs: first-job
     runs-on: ubuntu-latest
 
     steps:
-      - name: Receive App Version
-        run: echo "Received version is ${{ needs.first-job.outputs.app-version }}"
+      - name: Second Job
+        run: echo "Second job should be skipped"
