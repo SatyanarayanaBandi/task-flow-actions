@@ -1,4 +1,4 @@
-name: GitHub Actions Failure Practice
+name: GitHub Actions Conditions
 
 "on":
   push:
@@ -8,25 +8,21 @@ name: GitHub Actions Failure Practice
   workflow_dispatch:
 
 jobs:
-  first-job:
+  condition-job:
     runs-on: ubuntu-latest
 
     steps:
-      - name: First Job Start
-        run: echo "First job started"
+      - name: First Step
+        run: echo "First step succeeded"
 
       - name: Intentional Failure
         run: |
-          echo "This step will fail intentionally"
+          echo "This step will fail"
           exit 1
 
-      - name: This Will Be Skipped
-        run: echo "You should not see this message"
+      - name: Normal Next Step
+        run: echo "This step will be skipped"
 
-  second-job:
-    needs: first-job
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Second Job
-        run: echo "Second job should be skipped"
+      - name: Failure Handler
+        if: failure()
+        run: echo "A previous step failed, so this step is running"
