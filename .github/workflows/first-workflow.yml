@@ -12,15 +12,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - name: First Job Start
+        run: |
+          echo "First Job started"
+          date
 
-      - name: First Job Message
-        run: echo "Hello from First Job"
+      - name: First Job Wait
+        run: |
+          echo "First Job is running..."
+          sleep 10
+          echo "First Job finished"
+          date
 
   second-job:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Second Job Message
-        run: echo "Hello from Second Job"
+      - name: Second Job Start
+        run: |
+          echo "Second Job started"
+          date
+
+      - name: Second Job Wait
+        run: |
+          echo "Second Job is running..."
+          sleep 10
+          echo "Second Job finished"
+          date
