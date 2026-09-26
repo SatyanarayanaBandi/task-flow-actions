@@ -1,3 +1,4 @@
+cat > .github/workflows/first-workflow.yml <<'EOF'
 name: First GitHub Actions Workflow
 
 on:
@@ -15,35 +16,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Verify Repository Files
-        run: |
-          echo "Repository files after checkout:"
-          ls -la
-          echo "Package file:"
-          cat package.json
+      - name: First Job Message
+        run: echo "Hello from First Job"
 
-      - name: Print Hello
-        run: echo "Hello from GitHub Actions"
+  second-job:
+    runs-on: ubuntu-latest
 
-      - name: Show Current Directory
-        run: pwd
-
-      - name: List Files
-        run: ls -la
-
-      - name: Show Runner Information
-        run: |
-          echo "Operating System:"
-          uname -a
-          echo "Runner Name:"
-          echo "$RUNNER_NAME"
-          echo "Runner OS:"
-          echo "$RUNNER_OS"
-
-      - name: Multiple Commands
-        run: |
-          echo "Command 1"
-          echo "Command 2"
-          echo "Command 3"
-          pwd
-          ls -la
+    steps:
+      - name: Second Job Message
+        run: echo "Hello from Second Job"
+EOF
