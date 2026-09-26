@@ -12,27 +12,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: First Job Start
+      - name: First Job
         run: |
-          echo "First Job started"
-          date
-
-      - name: First Job Wait
-        run: |
-          echo "First Job is running..."
-          sleep 10
-          echo "First Job finished"
-          date
+          echo "First job completed"
 
   second-job:
-    needs: first-job
     runs-on: ubuntu-latest
 
     steps:
-      - name: Second Job Start
+      - name: Second Job
         run: |
-          echo "Second Job started"
-          date
+          echo "Second job completed"
 
-      - name: Second Job Message
-        run: echo "Second Job started after First Job completed"
+  third-job:
+    needs: [first-job, second-job]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Third Job
+        run: |
+          echo "Third job starts only after first and second jobs finish"
