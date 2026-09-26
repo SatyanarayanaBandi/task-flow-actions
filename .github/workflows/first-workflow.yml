@@ -1,7 +1,6 @@
-cat > .github/workflows/first-workflow.yml <<'EOF'
 name: First GitHub Actions Workflow
 
-on:
+"on":
   push:
     branches:
       - main
@@ -25,4 +24,3 @@ jobs:
     steps:
       - name: Second Job Message
         run: echo "Hello from Second Job"
-EOF
