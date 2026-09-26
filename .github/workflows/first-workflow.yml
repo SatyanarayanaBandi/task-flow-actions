@@ -1,4 +1,4 @@
-name: First GitHub Actions Workflow
+name: GitHub Actions Job Outputs
 
 "on":
   push:
@@ -11,24 +11,21 @@ jobs:
   first-job:
     runs-on: ubuntu-latest
 
+    outputs:
+      app-version: ${{ steps.version.outputs.value }}
+
     steps:
-      - name: First Job
-        run: |
-          echo "First job completed"
+      - name: Create App Version
+        id: version
+        run: echo "value=1.0.0" >> "$GITHUB_OUTPUT"
+
+      - name: Show Created Version
+        run: echo "Created version is ${{ steps.version.outputs.value }}"
 
   second-job:
+    needs: first-job
     runs-on: ubuntu-latest
 
     steps:
-      - name: Second Job
-        run: |
-          echo "Second job completed"
-
-  third-job:
-    needs: [first-job, second-job]
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Third Job
-        run: |
-          echo "Third job starts only after first and second jobs finish"
+      - name: Receive App Version
+        run: echo "Received version is ${{ needs.first-job.outputs.app-version }}"
